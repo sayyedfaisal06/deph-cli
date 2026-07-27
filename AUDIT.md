@@ -2,7 +2,7 @@
 
 **Auditor:** principal-engineer / appsec review
 **Date:** 2026-07-27 (re-audit; original pass earlier same day)
-**Under review:** working tree at `/Users/cometchat/Desktop/personal/deph` (not a git repo; version 0.1.0)
+**Under review:** the working tree at version 0.1.0
 **Environment:** Python 3.9.6 (project `.venv`), macOS. `python -m pytest -q` → **111 passed** (was 96).
 
 ---
