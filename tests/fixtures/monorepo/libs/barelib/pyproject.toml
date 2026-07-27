@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "barelib"
+version = "0.3.0"
+description = "Fixture: a PEP 621 library with no lockfile anywhere."
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3.9",
+    "License :: OSI Approved :: MIT License",
+]
+dependencies = [
+    "requests==2.31.0",
+    "PyYAML==6.0.1",
+    "uvicorn[standard]==0.23.2",
+    "flask>=2.0",
+    "attrs~=23.1",
+    "tomli; python_version < '3.11'",
+    "click",
+    "vendored-thing @ https://example.com/vendored_thing-1.0.tar.gz",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.2",
+    "ruff>=0.1.0",
+]
+docs = ["sphinx==7.1.2"]
+
+[project.urls]
+Homepage = "https://example.com/barelib"
+
+[tool.ruff]
+line-length = 88

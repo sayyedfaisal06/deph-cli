@@ -1,0 +1,23 @@
+- id: deph-check
+  name: deph check
+  description: Evaluate the committed .deph file against its policy. No network.
+  entry: deph check
+  language: python
+  pass_filenames: false
+  # A .deph file is only as good as the lockfiles it was scanned from, so run
+  # on lockfile changes too: a bumped dependency should mean a re-scan.
+  files: >
+    (?x)^(
+      .*\.deph|
+      .*package-lock\.json|.*yarn\.lock|.*pnpm-lock\.yaml|
+      .*requirements.*\.txt|.*poetry\.lock|.*Pipfile\.lock|.*uv\.lock|
+      .*Cargo\.lock|.*go\.sum|.*Gemfile\.lock|.*composer\.lock
+    )$
+
+- id: deph-validate
+  name: deph validate
+  description: Parse and lint the .deph file.
+  entry: deph validate
+  language: python
+  pass_filenames: false
+  files: \.deph$

@@ -1,0 +1,11 @@
+[package]
+name = "agent"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+tokio = { version = "1.8.0", features = ["full"] }
+serde = "1.0.126"
+
+[dev-dependencies]
+regex = "1.5.4"

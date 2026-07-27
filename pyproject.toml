@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# The distribution is deph-cli because `deph` was already taken on PyPI and
+# npm. The installed command, the import name and the file extension are all
+# still `deph`; only the package you install by is different.
+name = "deph-cli"
+dynamic = ["version"]   # single-sourced from deph.__version__
+description = "Audit npm, pip and cargo dependencies for vulnerabilities, outdated versions and disallowed licenses, against a policy file in your repo."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+authors = [{ name = "Faisal Khalil Sayyed" }]
+keywords = ["dependencies", "security", "audit", "license", "npm", "pip", "cargo"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Quality Assurance",
+]
+# Zero runtime dependencies — stdlib only. Keep it that way.
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.urls]
+Homepage = "https://github.com/sayyedfaisal06/deph"
+Changelog = "https://github.com/sayyedfaisal06/deph/blob/main/CHANGELOG.md"
+
+[project.scripts]
+deph = "deph.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.dynamic]
+version = { attr = "deph.__version__" }
+
+[tool.setuptools.package-data]
+"deph.studio" = ["template.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+
+[tool.ruff.lint]
+# Correctness rules only; stylistic modernization (UP*) is off because we
+# support Python 3.9 with plain typing.List/Optional annotations.
+select = ["E4", "E7", "E9", "F", "B", "PLE"]
+
+[tool.coverage.run]
+branch = true
+source = ["src/deph"]
+omit = [
+    # Exercised end to end by tests/test_cli.py, which runs `deph` as a
+    # subprocess on purpose: that is the only way to test argument parsing,
+    # exit codes and atomic writes as a user meets them. Coverage can't see
+    # into those processes, so measuring cli.py here would report 0% for code
+    # that is in fact well covered.
+    "*/deph/cli.py",
+    "*/deph/__main__.py",
+]
+
+[tool.coverage.report]
+exclude_also = [
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]

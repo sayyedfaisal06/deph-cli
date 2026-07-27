@@ -1,0 +1,30 @@
+{
+  "_comment": "Published as deph-cli because `deph` was taken on npm and PyPI. The binary this installs is still `deph`.",
+  "name": "deph-cli",
+  "version": "0.1.0",
+  "description": "Audit npm, pip and cargo dependencies for vulnerabilities, outdated versions and disallowed licenses, against a policy file in your repo.",
+  "keywords": ["dependencies", "security", "audit", "license", "vulnerability", "sbom", "cyclonedx", "sarif"],
+  "license": "MIT",
+  "author": "Faisal Khalil Sayyed",
+  "homepage": "https://github.com/sayyedfaisal06/deph",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sayyedfaisal06/deph.git",
+    "directory": "npm"
+  },
+  "bin": {
+    "deph": "bin/deph.js"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "files": [
+    "bin/",
+    "vendor/",
+    "README.md"
+  ],
+  "scripts": {
+    "prepack": "node scripts/sync-python.js",
+    "test": "node scripts/smoke.js"
+  }
+}

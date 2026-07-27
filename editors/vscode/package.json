@@ -1,0 +1,39 @@
+{
+  "name": "deph-vscode",
+  "displayName": "deph",
+  "description": "Syntax highlighting for .deph dependency-health files and a Deph: Open Studio command.",
+  "version": "0.1.0",
+  "publisher": "deph",
+  "license": "MIT",
+  "engines": { "vscode": "^1.75.0" },
+  "categories": ["Programming Languages"],
+  "main": "./extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "languages": [
+      {
+        "id": "deph",
+        "aliases": ["deph", "Deph"],
+        "extensions": [".deph"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "deph",
+        "scopeName": "source.deph",
+        "path": "./syntaxes/deph.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "deph.openStudio",
+        "title": "Deph: Open Studio"
+      }
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sayyedfaisal06/deph"
+  }
+}

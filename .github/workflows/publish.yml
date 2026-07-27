@@ -1,0 +1,70 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags: ["v*"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]" && pytest -q
+      - run: pipx run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    environment: pypi
+    permissions:
+      id-token: write   # PyPI trusted publishing — no API token stored
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+
+  publish-npm:
+    # Opt-in: set the PUBLISH_NPM repository variable to "true" and add an
+    # NPM_TOKEN secret. Without those a tag still publishes to PyPI cleanly
+    # rather than failing on a missing credential.
+    if: vars.PUBLISH_NPM == 'true'
+    runs-on: ubuntu-latest
+    needs: build
+    permissions:
+      id-token: write   # npm provenance attestation
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          registry-url: "https://registry.npmjs.org"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: the tag must match the package version
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          pkg=$(node -p "require('./npm/package.json').version")
+          if [ "$tag" != "$pkg" ]; then
+            echo "tag $tag does not match npm/package.json $pkg"; exit 1
+          fi
+      - name: verify the wrapper before publishing it
+        working-directory: npm
+        run: |
+          node scripts/sync-python.js
+          node scripts/smoke.js
+      - name: publish
+        working-directory: npm
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

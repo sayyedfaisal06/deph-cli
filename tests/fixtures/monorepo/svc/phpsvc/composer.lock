@@ -1,0 +1,80 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state"
+    ],
+    "content-hash": "6f8b0c1d2e3f4a5b6c7d8e9f0a1b2c3d",
+    "packages": [
+        {
+            "name": "example/internal-tools",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://git.example.com/example/internal-tools.git",
+                "reference": "9f1c3ba0f6e2d5a7c4b8e1d0a2f3c4b5d6e7f809"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://git.example.com/api/v4/projects/1/archive.zip"
+            },
+            "type": "library"
+        },
+        {
+            "name": "monolog/monolog",
+            "version": "2.9.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/monolog.git",
+                "reference": "f259e2b15fb95494c83f4c0f9d1b6b0a6ba76b4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/f259e2b"
+            },
+            "require": {
+                "php": ">=7.2",
+                "psr/log": "^1.0.1 || ^2.0 || ^3.0"
+            },
+            "type": "library"
+        },
+        {
+            "name": "psr/log",
+            "version": "v3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe5ea303b0887d5caefd3d431c3e61ad47037001"
+            },
+            "type": "library"
+        }
+    ],
+    "packages-dev": [
+        {
+            "name": "phpunit/phpunit",
+            "version": "10.5.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "3f4f2b1a1d3e0e0d5c9b8a7f6e5d4c3b2a190807"
+            },
+            "type": "library"
+        },
+        {
+            "name": "sebastian/diff",
+            "version": "v5.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/diff.git",
+                "reference": "c41e007b4b62af48218231d6c2275e4c9b975b2e"
+            },
+            "type": "library"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "platform": {
+        "php": ">=8.1",
+        "ext-json": "*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.6.0"
+}

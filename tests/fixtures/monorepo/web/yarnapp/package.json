@@ -1,0 +1,13 @@
+{
+  "name": "yarnapp",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.0.0",
+    "axios": "^0.21.1",
+    "mylib": "file:../mylib"
+  },
+  "devDependencies": {
+    "jest": "^27.0.0"
+  }
+}

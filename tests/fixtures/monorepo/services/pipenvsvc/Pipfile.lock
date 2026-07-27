@@ -1,0 +1,81 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "1c9a1f0d7b5e4c3a2b1908f7e6d5c4b3a2918f7e6d5c4b3a2918f7e6d5c4b3a2"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.9"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "asgiref": {
+            "hashes": ["sha256:aaa"],
+            "markers": "python_version >= '3.7'",
+            "version": "==3.7.2"
+        },
+        "certifi": {
+            "hashes": ["sha256:bbb"],
+            "markers": "python_version >= '3.6'",
+            "version": "==2023.7.22"
+        },
+        "Django": {
+            "hashes": ["sha256:ccc"],
+            "index": "pypi",
+            "version": "==4.2.4"
+        },
+        "internal-lib": {
+            "git": "https://github.com/example/internal-lib.git",
+            "ref": "8a7b6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0a9b"
+        },
+        "legacy-wheel": {
+            "file": "https://example.com/wheels/legacy_wheel-1.4.0-py3-none-any.whl"
+        },
+        "requests": {
+            "hashes": ["sha256:ddd"],
+            "index": "pypi",
+            "version": "==2.31.0"
+        },
+        "sqlparse": {
+            "hashes": ["sha256:eee"],
+            "markers": "python_version >= '3.5'",
+            "version": "==0.4.4"
+        },
+        "urllib3": {
+            "hashes": ["sha256:fff"],
+            "markers": "python_version >= '3.7'",
+            "version": ">=1.21.1,<3"
+        },
+        "vendored_helpers": {
+            "path": "./vendor/helpers"
+        }
+    },
+    "develop": {
+        "black": {
+            "hashes": ["sha256:111"],
+            "index": "pypi",
+            "version": "==23.9.1"
+        },
+        "pluggy": {
+            "hashes": ["sha256:222"],
+            "markers": "python_version >= '3.8'",
+            "version": "==1.3.0"
+        },
+        "pytest": {
+            "hashes": ["sha256:333"],
+            "index": "pypi",
+            "version": "==7.4.2"
+        },
+        "requests": {
+            "hashes": ["sha256:ddd"],
+            "version": "==2.31.0"
+        }
+    }
+}

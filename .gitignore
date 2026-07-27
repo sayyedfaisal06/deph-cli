@@ -1,0 +1,26 @@
+__pycache__/
+.DS_Store
+.coverage
+coverage.xml
+htmlcov/
+*.pyc
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+deph-report.html
+report.html
+# fixture scans are created by CI/dev runs, never committed
+tests/fixtures/monorepo/*.deph
+tests/fixtures/monorepo/check.json
+tests/fixtures/monorepo/before.bak
+editors/vscode/node_modules/
+editors/vscode/*.vsix
+# Vendored at pack time by npm/scripts/sync-python.js; the source of truth is
+# src/deph, and committing a second copy would let the two drift.
+npm/vendor/
+npm/*.tgz
+npm/node_modules/

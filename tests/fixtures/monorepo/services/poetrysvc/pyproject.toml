@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "poetrysvc"
+version = "0.4.1"
+description = "Fixture: poetry project with a lockfile."
+authors = ["Nobody <nobody@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+flask = "^2.3"
+requests = "2.31.0"
+internal-helpers = { git = "https://github.com/example/internal-helpers.git", branch = "main" }
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4"
+
+[tool.poetry.group.lint.dependencies]
+ruff = "^0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

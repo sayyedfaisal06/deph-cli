@@ -1,0 +1,75 @@
+{
+  "comment": [
+    "Real repositories scanned by the corpus CI job. The point is to meet the",
+    "long tail of lockfile shapes that hand-written fixtures never produce:",
+    "big npm monorepos, Django apps, Rust workspaces, Go modules.",
+    "",
+    "Pinned to a commit so a corpus run is reproducible and a failure is",
+    "always about deph, never about upstream changing under us.",
+    "",
+    "expect_min_deps guards against a scanner silently regressing to zero.",
+    "expect_manifests names what discovery must find in that repo."
+  ],
+  "repos": [
+    {
+      "name": "sindresorhus/got",
+      "url": "https://github.com/sindresorhus/got",
+      "ref": "v14.4.5",
+      "expect_manifests": [
+        "package.json"
+      ],
+      "expect_min_deps": 0,
+      "note": "npm library, no lockfile committed: exercises the pyproject-equivalent empty case"
+    },
+    {
+      "name": "pallets/flask",
+      "url": "https://github.com/pallets/flask",
+      "ref": "3.1.0",
+      "expect_manifests": [
+        "pyproject.toml"
+      ],
+      "expect_min_deps": 0,
+      "note": "PEP 621 with ranges: nearly everything should land in unresolved"
+    },
+    {
+      "name": "psf/requests",
+      "url": "https://github.com/psf/requests",
+      "ref": "v2.32.3",
+      "expect_manifests": [
+        "requirements-dev.txt"
+      ],
+      "expect_min_deps": 1,
+      "note": "requirements files with includes and ranges"
+    },
+    {
+      "name": "BurntSushi/ripgrep",
+      "url": "https://github.com/BurntSushi/ripgrep",
+      "ref": "14.1.1",
+      "expect_manifests": [
+        "Cargo.lock"
+      ],
+      "expect_min_deps": 20,
+      "note": "Rust workspace with many crates and dual licences"
+    },
+    {
+      "name": "gin-gonic/gin",
+      "url": "https://github.com/gin-gonic/gin",
+      "ref": "v1.10.0",
+      "expect_manifests": [
+        "go.sum"
+      ],
+      "expect_min_deps": 10,
+      "note": "Go module with indirect requirements and pseudo-versions"
+    },
+    {
+      "name": "prettier/prettier",
+      "url": "https://github.com/prettier/prettier",
+      "ref": "3.4.2",
+      "expect_manifests": [
+        "yarn.lock"
+      ],
+      "expect_min_deps": 100,
+      "note": "large yarn berry lockfile with patch: and workspace: protocols"
+    }
+  ]
+}

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>deph studio</title>
+<style>
+  :root {
+    --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b;
+    --ink-2: #52514e; --muted: #898781; --border: #e4e3df;
+    --good: #0ca30c; --warning: #fab219; --serious: #ec835a;
+    --critical: #d03b3b; --accent: #52514e;
+    --chip-bg: rgba(0,0,0,.045);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --page: #0d0d0d; --surface: #1a1a19; --ink: #ffffff;
+      --ink-2: #c3c2b7; --muted: #898781; --border: #2e2e2c;
+      --chip-bg: rgba(255,255,255,.07);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--page); color: var(--ink);
+    font: 14px/1.5 ui-sans-serif, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  header {
+    padding: 20px 28px 14px; border-bottom: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 18px;
+  }
+  header h1 { font-size: 18px; margin: 0; }
+  header h1 span { color: var(--muted); font-weight: 400; }
+  header .meta { color: var(--ink-2); font-size: 13px; }
+  .totals { margin-left: auto; display: flex; gap: 14px; font-size: 13px; }
+  .totals b { font-size: 16px; }
+  main { max-width: 1080px; margin: 0 auto; padding: 18px 28px 60px; }
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    margin: 6px 0 18px;
+  }
+  .controls input[type=search] {
+    flex: 1 1 220px; max-width: 320px; padding: 7px 10px;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--surface); color: var(--ink); font: inherit;
+  }
+  .seg { display: inline-flex; border: 1px solid var(--border);
+         border-radius: 8px; overflow: hidden; background: var(--surface); }
+  .seg button {
+    border: 0; background: transparent; color: var(--ink-2); font: inherit;
+    font-size: 13px; padding: 6px 12px; cursor: pointer;
+  }
+  .seg button.on { background: var(--ink); color: var(--page); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 18px; overflow: hidden;
+  }
+  .card-head {
+    display: flex; align-items: center; gap: 14px; padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .grade {
+    width: 40px; height: 40px; border-radius: 10px; flex: none;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: #fff;
+  }
+  .grade[data-g=A] { background: var(--good); }
+  .grade[data-g=B] { background: #5d9c2f; }
+  .grade[data-g=C] { background: var(--warning); color: #402c00; }
+  .grade[data-g=D] { background: var(--serious); color: #3d1403; }
+  .grade[data-g=F] { background: var(--critical); }
+  .card-head h2 { font-size: 15px; margin: 0; }
+  .card-head .sub { color: var(--muted); font-size: 12.5px; }
+  .eco {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+    border: 1px solid var(--border); border-radius: 999px; padding: 2px 9px;
+    color: var(--ink-2);
+  }
+  .score { margin-left: auto; color: var(--ink-2); font-size: 13px; }
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left; font-size: 11.5px; text-transform: uppercase;
+    letter-spacing: .05em; color: var(--muted); font-weight: 600;
+    padding: 8px 18px; border-bottom: 1px solid var(--border);
+  }
+  td { padding: 8px 18px; border-bottom: 1px solid var(--border);
+       vertical-align: top; }
+  tr:last-child td { border-bottom: 0; }
+  td.dep-name { font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+                font-size: 13px; white-space: nowrap; }
+  .tbadge {
+    font-size: 10.5px; color: var(--muted); border: 1px dashed var(--border);
+    border-radius: 999px; padding: 1px 7px; margin-left: 8px;
+    vertical-align: 1px;
+  }
+  .ver { font-family: ui-monospace, Menlo, monospace; font-size: 12.5px;
+         white-space: nowrap; }
+  .ver .arrow { color: var(--muted); margin: 0 4px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 12px; border-radius: 999px; padding: 2px 10px;
+    background: var(--chip-bg); color: var(--ink-2);
+    text-decoration: none; margin: 1px 4px 1px 0; white-space: nowrap;
+  }
+  .chip .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .chip[data-sev=critical] .dot { background: var(--critical); }
+  .chip[data-sev=high]     .dot { background: var(--serious); }
+  .chip[data-sev=medium]   .dot { background: var(--warning); }
+  .chip[data-sev=low]      .dot { background: var(--muted); }
+  a.chip:hover { outline: 1px solid var(--border); }
+  .chip.waived { text-decoration: line-through; opacity: .62; }
+  .waive-note { display: block; font-size: 11.5px; color: var(--muted);
+                text-decoration: none; margin-top: 1px; }
+  .lag { font-size: 12px; color: var(--ink-2); }
+  .lag.major { color: var(--serious); font-weight: 600; }
+  .fix { font-size: 11.5px; color: var(--good); font-weight: 600;
+         margin-left: 6px; white-space: nowrap; }
+  .cov-warn { color: var(--serious); }
+  .tbadge.warn { color: var(--serious); border-color: var(--serious); }
+  .unresolved-row td { background: var(--chip-bg); }
+  .unresolved-row code { font-family: ui-monospace, Menlo, monospace;
+                         font-size: 12px; }
+  .reason { font-size: 11.5px; color: var(--muted); margin-left: 8px; }
+  .lic-bad { color: var(--critical); font-weight: 600; }
+  .lic-bad::before { content: "⚠ "; }
+  .ok { color: var(--muted); }
+  .empty { padding: 26px 18px; color: var(--muted); text-align: center; }
+  footer { color: var(--muted); font-size: 12px; text-align: center;
+           padding: 8px 0 26px; }
+  footer code { font-family: ui-monospace, Menlo, monospace; }
+</style>
+</head>
+<body>
+<header>
+  <h1>deph studio <span id="file"></span></h1>
+  <div class="meta" id="scanned"></div>
+  <div class="totals" id="totals"></div>
+</header>
+<main>
+  <div class="controls">
+    <input type="search" id="q" placeholder="Search dependencies…" aria-label="Search dependencies">
+    <div class="seg" id="sev" role="group" aria-label="Minimum severity">
+      <button data-v="" class="on">All</button>
+      <button data-v="low">Low+</button>
+      <button data-v="medium">Med+</button>
+      <button data-v="high">High+</button>
+      <button data-v="critical">Critical</button>
+    </div>
+    <div class="seg" id="scope" role="group" aria-label="Dependency scope">
+      <button data-v="" class="on">All deps</button>
+      <button data-v="direct">Direct</button>
+      <button data-v="transitive">Transitive</button>
+    </div>
+    <div class="seg" id="stage" role="group" aria-label="Dependency stage">
+      <button data-v="" class="on">Any</button>
+      <button data-v="prod">Prod</button>
+      <button data-v="dev">Dev</button>
+    </div>
+    <div class="seg" id="flagged" role="group" aria-label="Findings filter">
+      <button data-v="" class="on">Everything</button>
+      <button data-v="flagged">Flagged only</button>
+    </div>
+  </div>
+  <div id="projects"></div>
+  <footer>Read from <code id="file2"></code>. Edit policy and waivers there,
+    then refresh.</footer>
+</main>
+<script>
+const DATA = __DEPH_PAYLOAD__;
+const SEV_RANK = { low: 0, medium: 1, high: 2, critical: 3 };
+const state = { q: "", sev: "", scope: "", stage: "", flagged: "" };
+const REASON_TEXT = {
+  range: "version range, not a pin",
+  unpinned: "no version given",
+  vcs: "git dependency",
+  url: "direct URL",
+  local: "local path",
+  workspace: "workspace sibling",
+  missing: "include deph could not read",
+  unparsed: "unrecognized syntax",
+};
+
+const esc = s => String(s == null ? "" : s)
+  .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;");
+
+function seg(id, key) {
+  const el = document.getElementById(id);
+  el.addEventListener("click", e => {
+    const b = e.target.closest("button");
+    if (!b) return;
+    el.querySelectorAll("button").forEach(x => x.classList.remove("on"));
+    b.classList.add("on");
+    state[key] = b.dataset.v;
+    render();
+  });
+}
+
+function depMaxSev(dep) {
+  let max = -1;
+  for (const f of dep.findings)
+    if (f.kind === "vuln" && f.level !== "waived")
+      max = Math.max(max, SEV_RANK[f.detail] ?? -1);
+  return max;
+}
+
+function depVisible(dep) {
+  if (state.q && !(dep.name + " " + (dep.license || ""))
+      .toLowerCase().includes(state.q)) return false;
+  if (state.scope === "direct" && dep.transitive) return false;
+  if (state.scope === "transitive" && !dep.transitive) return false;
+  if (state.stage === "dev" && !dep.dev) return false;
+  if (state.stage === "prod" && dep.dev) return false;
+  if (state.sev && depMaxSev(dep) < SEV_RANK[state.sev]) return false;
+  if (state.flagged && !dep.findings.length) return false;
+  return true;
+}
+
+function unresolvedVisible(item) {
+  if (state.q && !(item.spec + " " + item.name).toLowerCase()
+      .includes(state.q)) return false;
+  // An unpinned line has no severity or scope, so any of those filters hides
+  // it. Never let a filter make it look like there was nothing to report.
+  return !state.sev && !state.scope && !state.stage;
+}
+
+function vulnChips(dep) {
+  return dep.findings.filter(f => f.kind === "vuln").map(f => {
+    const gh = /^GHSA-/.test(f.id)
+      ? `https://github.com/advisories/${encodeURIComponent(f.id)}` : null;
+    const waived = f.level === "waived";
+    const body = `<span class="dot"></span>${esc(f.detail)} · ${esc(f.id)}`;
+    const cls = `chip${waived ? " waived" : ""}`;
+    const chip = gh
+      ? `<a class="${cls}" data-sev="${esc(f.detail)}" href="${gh}" target="_blank" rel="noopener">${body}</a>`
+      : `<span class="${cls}" data-sev="${esc(f.detail)}">${body}</span>`;
+    return chip + (waived
+      ? `<span class="waive-note">waived: ${esc(f.waived_reason || "")}</span>` : "");
+  }).join("");
+}
+
+function licenseCell(dep) {
+  const f = dep.findings.find(x => x.kind === "license");
+  if (!f) return `<span class="${dep.license ? "" : "ok"}">${esc(dep.license || "—")}</span>`;
+  if (f.level === "waived")
+    return `<span class="chip waived">${esc(dep.license)}</span>` +
+           `<span class="waive-note">waived: ${esc(f.waived_reason || "")}</span>`;
+  return `<span class="lic-bad">${esc(dep.license)}</span>`;
+}
+
+function versionCell(dep) {
+  const fix = dep.fix
+    ? ` <span class="fix">fix ${esc(dep.fix)}</span>` : "";
+  if (!dep.latest) return `<span class="ver">${esc(dep.version)}</span>` + fix;
+  const lagTag = dep.findings.find(x => x.kind === "lag");
+  const cls = lagTag && lagTag.detail === "major" ? "lag major" : "lag";
+  return `<span class="ver">${esc(dep.version)}<span class="arrow">→</span>${esc(dep.latest)}</span>` +
+    (lagTag ? ` <span class="${cls}">${esc(lagTag.detail)}${lagTag.level === "waived" ? " (waived)" : ""} behind</span>` : "") +
+    fix;
+}
+
+function render() {
+  document.getElementById("file").textContent = "— " + DATA.file;
+  document.getElementById("file2").textContent = DATA.file;
+  document.getElementById("scanned").textContent =
+    DATA.generated_at ? "scanned " + DATA.generated_at : "not scanned";
+  const s = DATA.summary;
+  const cov = DATA.coverage || { audited: 0, unresolved: 0 };
+  document.getElementById("totals").innerHTML =
+    `<span><b>${s.fail}</b> fail</span><span><b>${s.warn}</b> warn</span>` +
+    `<span><b>${s.waived}</b> waived</span>` +
+    (cov.unresolved
+      ? `<span class="cov-warn" title="deph could not pin these to a version, so they were not audited"><b>${cov.unresolved}</b> unaudited</span>`
+      : "");
+
+  const host = document.getElementById("projects");
+  host.innerHTML = "";
+  if (!DATA.projects.length) {
+    host.innerHTML = `<div class="card"><div class="empty">Nothing scanned yet.
+      Run <code>deph scan</code>.</div></div>`;
+    return;
+  }
+  for (const p of DATA.projects) {
+    const rows = p.deps.filter(depVisible).map(dep => `
+      <tr>
+        <td class="dep-name">${esc(dep.name)}${dep.transitive
+          ? `<span class="tbadge">transitive</span>` : ""}${dep.dev
+          ? `<span class="tbadge">dev</span>` : ""}</td>
+        <td>${versionCell(dep)}</td>
+        <td>${licenseCell(dep)}</td>
+        <td>${vulnChips(dep) || `<span class="ok">—</span>`}</td>
+      </tr>`).join("");
+    const unresolved = (p.unresolved || []).filter(unresolvedVisible);
+    const unresolvedRows = unresolved.map(item => `
+      <tr class="unresolved-row">
+        <td class="dep-name">${esc(item.name || item.spec)}
+          <span class="tbadge warn">not audited</span></td>
+        <td colspan="3"><code>${esc(item.spec)}</code>
+          <span class="reason">${esc(REASON_TEXT[item.reason] || item.reason)}</span></td>
+      </tr>`).join("");
+    const pct = Math.round((p.coverage == null ? 1 : p.coverage) * 100);
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div class="card-head">
+        <div class="grade" data-g="${esc(p.grade)}" title="score ${p.score}/100">${esc(p.grade)}</div>
+        <div>
+          <h2>${esc(p.name)}</h2>
+          <div class="sub">${esc(p.manifest)}</div>
+        </div>
+        <span class="eco">${esc(p.ecosystem)}</span>
+        <span class="score">${p.deps.length} deps · score ${p.score}/100${
+          pct < 100 ? ` · <span class="cov-warn">${pct}% audited</span>` : ""}</span>
+      </div>
+      ${rows || unresolvedRows ? `<table>
+        <thead><tr><th>Dependency</th><th>Version</th><th>License</th>
+        <th>Vulnerabilities</th></tr></thead><tbody>${rows}${unresolvedRows}</tbody></table>`
+        : `<div class="empty">No dependencies match the current filters.</div>`}`;
+    host.appendChild(card);
+  }
+}
+
+document.getElementById("q").addEventListener("input", e => {
+  state.q = e.target.value.trim().toLowerCase();
+  render();
+});
+seg("sev", "sev");
+seg("scope", "scope");
+seg("stage", "stage");
+seg("flagged", "flagged");
+render();
+</script>
+</body>
+</html>

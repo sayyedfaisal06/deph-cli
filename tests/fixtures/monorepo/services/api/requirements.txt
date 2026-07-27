@@ -1,0 +1,9 @@
+# Fixture: old on purpose, so the scanners have something to find.
+pyyaml==5.4
+requests==2.25.1        # an inline comment, which the parser must strip
+urllib3[secure]==1.26.4 ; python_version >= "3.6"
+# Everything below is unpinnable and must be skipped, not crashed on.
+-r common.txt
+-e ./local-package
+git+https://github.com/example/thing.git#egg=thing
+flask>=2.0

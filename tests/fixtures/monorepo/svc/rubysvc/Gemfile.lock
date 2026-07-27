@@ -1,0 +1,51 @@
+GIT
+  remote: https://github.com/ankane/strong_migrations.git
+  revision: 3c1f5a1e0d4b2f6ba1d0d4a9a1f4a1c9d2b3e4f5
+  branch: main
+  specs:
+    strong_migrations (0.7.9)
+      activerecord (>= 5.2)
+
+PATH
+  remote: ../vendored_gem
+  specs:
+    vendored_gem (0.1.0)
+      rack (~> 2.2)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    actionpack (7.0.4)
+      activesupport (= 7.0.4)
+      rack (~> 2.0, >= 2.2.0)
+    activesupport (7.0.4)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
+    concurrent-ruby (1.1.10)
+    nokogiri (1.13.9-x86_64-linux)
+      racc (~> 1.4)
+    racc (1.6.0)
+    rack (2.2.4)
+    rspec (3.12.0)
+      rspec-core (~> 3.12.0)
+      rspec-expectations (~> 3.12.0)
+    rspec-core (3.12.0)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.0)
+    rspec-support (3.12.0)
+
+PLATFORMS
+  ruby
+  x86_64-linux
+
+DEPENDENCIES
+  actionpack (~> 7.0)
+  nokogiri
+  rspec (~> 3.12)
+  strong_migrations!
+  vendored_gem!
+
+RUBY VERSION
+   ruby 3.1.2p20
+
+BUNDLED WITH
+   2.3.7
