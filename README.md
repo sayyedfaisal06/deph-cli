@@ -3,11 +3,11 @@
 A CLI that audits the dependencies of every project in a repo — npm, Python, cargo, Go, Ruby, PHP — for known vulnerabilities, outdated versions, and licenses you don't allow, against a policy you commit to the repo in a `.deph` file.
 
 ```console
-npx deph-cli --help          # or npm install -g deph-cli
-pipx install deph-cli        # or pip install deph-cli
+npx @sayyedfaisal06/deph-cli --help          # or npm install -g @sayyedfaisal06/deph-cli
+pipx install deph-cli                        # or pip install deph-cli
 ```
 
-The package is `deph-cli`; the command it installs is `deph`. (`deph` was already taken on both registries by unrelated projects.)
+The command is always `deph`. The package names differ per registry because `deph` was already taken on both: PyPI has it as `deph-cli`, and npm blocks that unscoped name as too similar to an existing `del-cli`, so npm is scoped.
 
 Either route installs the same tool. deph is written in Python and has no dependencies at all — stdlib only — so the npm package just vendors the source and runs it with whatever `python3` is already on the box. Nothing to compile, nothing to `pip install`, no supply chain of its own. It needs Python 3.9+ present, which macOS and every Linux CI image already have; on Windows you may have to install it. Point `DEPH_PYTHON` at a specific interpreter if the one you want isn't first on `PATH`.
 
@@ -160,9 +160,9 @@ Waivers can expire: `waive GHSA-x until 2026-09-01 "waiting on upstream"`. After
 In a Node pipeline, skip the Python setup step — the runners already have an interpreter:
 
 ```yaml
-- run: npx deph-cli scan
+- run: npx @sayyedfaisal06/deph-cli scan
   env: { GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
-- run: npx deph-cli check
+- run: npx @sayyedfaisal06/deph-cli check
 ```
 
 `deph check` needs no network, so it also works as a fast required check against the committed file with no scan step at all.

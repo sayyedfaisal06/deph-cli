@@ -1,4 +1,4 @@
-# deph-cli
+# @sayyedfaisal06/deph-cli
 
 The `deph` command.
 
@@ -7,16 +7,16 @@ Ruby, PHP — for known vulnerabilities, outdated versions, and licenses you
 don't allow, against a policy you commit to the repo in a `.deph` file.
 
 ```console
-npx deph-cli init      # writes repo.deph with a starting policy
-npx deph-cli scan      # finds manifests, looks up versions and advisories
-npx deph-cli check     # applies the policy; exit 1 if anything fails
-npx deph-cli studio    # dashboard on localhost
+npx @sayyedfaisal06/deph-cli init      # writes repo.deph with a starting policy
+npx @sayyedfaisal06/deph-cli scan      # finds manifests, looks up versions and advisories
+npx @sayyedfaisal06/deph-cli check     # applies the policy; exit 1 if anything fails
+npx @sayyedfaisal06/deph-cli studio    # dashboard on localhost
 ```
 
 Or install it once and the command is just `deph`:
 
 ```console
-npm install -g deph-cli
+npm install -g @sayyedfaisal06/deph-cli
 deph check
 ```
 
@@ -51,7 +51,7 @@ falling back to a different one.
 | 2 | Couldn't get far enough to judge: no `.deph` file, several of them, a parse error, or no usable Python. |
 | 130 | Interrupted. |
 
-The wrapper passes the exit code through untouched, so `npx deph-cli check` is safe
+The wrapper passes the exit code through untouched, so `npx @sayyedfaisal06/deph-cli check` is safe
 to use as a CI gate.
 
 ## License

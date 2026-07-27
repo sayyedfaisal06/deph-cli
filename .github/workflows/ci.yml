@@ -61,7 +61,7 @@ jobs:
         shell: bash
         run: |
           cd npm && npm pack --pack-destination "$RUNNER_TEMP"
-          npm install -g "$RUNNER_TEMP"/deph-cli-*.tgz
+          npm install -g "$RUNNER_TEMP"/sayyedfaisal06-deph-cli-*.tgz
           deph --version
           rc=0; deph check || rc=$?
           # No .deph file here, so this must be 2 ("couldn't judge"), not 0.
