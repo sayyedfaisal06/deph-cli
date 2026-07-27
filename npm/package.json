@@ -38,5 +38,9 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@deph/cli": "^0.1.0",
+    "studio": "^0.13.5"
   }
 }

@@ -5,6 +5,13 @@ Notable changes, newest first. Versions follow SemVer.
 ## [Unreleased]
 
 ### Fixed
+- The default licence allowlist covers the permissive licences that appear
+  throughout any real dependency tree: `0BSD`, `BlueOak-1.0.0`, `CC0-1.0`,
+  `CC-BY-4.0`, `Unlicense`, `Python-2.0`, `Zlib`. Scanning a real Next.js
+  project produced 24 licence failures of which 10 were `tslib`, `minimatch`,
+  `lru-cache`, `caniuse-lite` and friends — noise that teaches people to ignore
+  the output. Copyleft is still rejected by default, because LGPL and GPL are
+  per-dependency decisions that deserve a waiver and a reason.
 - **Scanners no longer drop dependencies silently.** Anything a manifest names
   that can't be pinned to one version (a range, an unpinned requirement, a
   git/URL/path dependency, an unreadable include) is now recorded with a reason,

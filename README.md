@@ -32,7 +32,7 @@ policy {
   fail vuln     >= high for direct
   warn vuln     >= high for transitive
   warn vuln     >= low
-  fail license  not [MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0] for prod
+  fail license  not [MIT, Apache-2.0, BSD-2-Clause, ISC, 0BSD, BlueOak-1.0.0] for prod
   warn lag      >= major for prod
   warn unresolved >= 1
 }

@@ -25,7 +25,13 @@ policy {
   warn vuln     >= low
 
   // Licenses allowed here. "MIT OR Apache-2.0" passes if either is listed.
-  fail license  not [MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0]
+  // These are the permissive ones that turn up throughout any real dependency
+  // tree; a list that rejects tslib or minimatch just trains you to ignore
+  // the output. Copyleft is deliberately absent: LGPL and GPL are decisions
+  // to make per dependency, with a waiver and a reason.
+  fail license  not [MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC, MPL-2.0,
+                     0BSD, BlueOak-1.0.0, CC0-1.0, CC-BY-4.0, Unlicense,
+                     Python-2.0, Zlib, PSF-2.0, WTFPL]
 
   // A full major version behind is worth knowing about, but not worth
   // failing a build over. Only for code you ship.
