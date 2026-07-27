@@ -4,7 +4,13 @@ Notable changes, newest first. Versions follow SemVer.
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-07-27
+
 ### Fixed
+- The npm package's README told people to run `npx @sayyedfaisal06/deph-cli`.
+  The package is `@deph/cli`; the install line on the npm page was the only
+  place that mattered and it was wrong. README text ships inside the tarball,
+  so correcting it needs a release.
 - The default licence allowlist covers the permissive licences that appear
   throughout any real dependency tree: `0BSD`, `BlueOak-1.0.0`, `CC0-1.0`,
   `CC-BY-4.0`, `Unlicense`, `Python-2.0`, `Zlib`. Scanning a real Next.js
