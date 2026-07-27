@@ -13,7 +13,7 @@ from . import __version__, enrich, parser, policy, scanners, versions
 ENRICH_WORKERS = 8
 
 INIT_TEMPLATE = '''// deph v1 policy for this repository.
-// Grammar: https://github.com/sayyedfaisal06/deph/blob/main/docs/SPEC.md
+// Grammar: https://github.com/sayyedfaisal06/deph-cli/blob/main/docs/SPEC.md
 //
 // `deph scan` rewrites everything below the generated marker. Everything
 // above it is yours and is preserved byte-for-byte: policy, waivers, and

@@ -180,7 +180,7 @@ There's also a pre-commit hook, which runs `deph check` when a `.deph` file or a
 
 ```yaml
 repos:
-  - repo: https://github.com/sayyedfaisal06/deph
+  - repo: https://github.com/sayyedfaisal06/deph-cli
     rev: v0.1.0
     hooks:
       - id: deph-check

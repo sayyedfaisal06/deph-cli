@@ -1,6 +1,6 @@
 # deph for VS Code
 
-Two things, for [deph](https://github.com/sayyedfaisal06/deph) `.deph` files:
+Two things, for [deph](https://github.com/sayyedfaisal06/deph-cli) `.deph` files:
 
 * A TextMate grammar, so policy rules, waivers, project and dep blocks,
   severities, advisory ids and the generated marker are all highlighted.

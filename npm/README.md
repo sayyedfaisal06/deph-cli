@@ -20,7 +20,7 @@ npm install -g @deph/cli
 deph check
 ```
 
-Full documentation: https://github.com/sayyedfaisal06/deph
+Full documentation: https://github.com/sayyedfaisal06/deph-cli
 
 ## What this package is
 

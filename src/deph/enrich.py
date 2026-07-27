@@ -31,7 +31,7 @@ from typing import Dict, List, Optional, Tuple
 
 from . import __version__, versions
 
-USER_AGENT = "deph/%s (+https://github.com/sayyedfaisal06/deph)" % __version__
+USER_AGENT = "deph/%s (+https://github.com/sayyedfaisal06/deph-cli)" % __version__
 DEFAULT_TTL = 24 * 3600          # registry metadata
 ADVISORY_TTL = 6 * 3600          # advisories move faster
 NEGATIVE_TTL = 10 * 60           # how long a failed fetch stays failed

@@ -1,7 +1,7 @@
 {
   "_comment": "Scoped under the @deph org because npm rejects the unscoped deph-cli as too similar to del-cli, and `deph` itself is taken by an unrelated package. The binary is still `deph`. PyPI uses the unscoped deph-cli, which is free there.",
   "name": "@deph/cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Audit npm, pip and cargo dependencies for vulnerabilities, outdated versions and disallowed licenses, against a policy file in your repo.",
   "keywords": [
     "dependencies",
@@ -15,10 +15,10 @@
   ],
   "license": "MIT",
   "author": "Faisal Khalil Sayyed",
-  "homepage": "https://github.com/sayyedfaisal06/deph",
+  "homepage": "https://github.com/sayyedfaisal06/deph-cli",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sayyedfaisal06/deph.git",
+    "url": "git+https://github.com/sayyedfaisal06/deph-cli.git",
     "directory": "npm"
   },
   "bin": {

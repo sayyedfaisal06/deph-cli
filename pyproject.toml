@@ -34,8 +34,8 @@ dependencies = []
 dev = ["pytest>=7"]
 
 [project.urls]
-Homepage = "https://github.com/sayyedfaisal06/deph"
-Changelog = "https://github.com/sayyedfaisal06/deph/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/sayyedfaisal06/deph-cli"
+Changelog = "https://github.com/sayyedfaisal06/deph-cli/blob/main/CHANGELOG.md"
 
 [project.scripts]
 deph = "deph.cli:main"

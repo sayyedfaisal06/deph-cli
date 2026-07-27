@@ -4,6 +4,13 @@ Notable changes, newest first. Versions follow SemVer.
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-07-27
+
+### Fixed
+- Every repository and homepage URL now points at `sayyedfaisal06/deph-cli`,
+  the repo's current name. The published metadata still named the old
+  `sayyedfaisal06/deph`, which GitHub redirects but npm displayed verbatim.
+
 ## [0.1.1] - 2026-07-27
 
 ### Fixed

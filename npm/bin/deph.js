@@ -69,7 +69,7 @@ if (!fs.existsSync(path.join(VENDOR, "deph", "cli.py"))) {
   fail([
     "deph: the vendored Python source is missing from this package.",
     "This is a packaging bug; please report it at",
-    "https://github.com/sayyedfaisal06/deph/issues",
+    "https://github.com/sayyedfaisal06/deph-cli/issues",
   ]);
 }
 

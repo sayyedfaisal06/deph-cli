@@ -1,7 +1,7 @@
 # Contributing
 
 ```console
-git clone https://github.com/sayyedfaisal06/deph && cd deph
+git clone https://github.com/sayyedfaisal06/deph-cli && cd deph-cli
 python -m venv .venv && . .venv/bin/activate
 pip install -e ".[dev]"
 pytest

@@ -14,7 +14,7 @@ from .parser import Dep, Document, Project
 
 SARIF_SCHEMA = ("https://raw.githubusercontent.com/oasis-tcs/sarif-spec/"
                 "master/Schemata/sarif-schema-2.1.0.json")
-TOOL_URL = "https://github.com/sayyedfaisal06/deph"
+TOOL_URL = "https://github.com/sayyedfaisal06/deph-cli"
 
 # SARIF only has error/warning/note/none, so waived findings become notes: they
 # stay visible in code scanning without failing anything.
