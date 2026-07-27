@@ -3,7 +3,7 @@
 A CLI that audits the dependencies of every project in a repo — npm, Python, cargo, Go, Ruby, PHP — for known vulnerabilities, outdated versions, and licenses you don't allow, against a policy you commit to the repo in a `.deph` file.
 
 ```console
-npx @sayyedfaisal06/deph-cli --help          # or npm install -g @sayyedfaisal06/deph-cli
+npx @deph/cli --help          # or npm install -g @deph/cli
 pipx install deph-cli                        # or pip install deph-cli
 ```
 
@@ -160,9 +160,9 @@ Waivers can expire: `waive GHSA-x until 2026-09-01 "waiting on upstream"`. After
 In a Node pipeline, skip the Python setup step — the runners already have an interpreter:
 
 ```yaml
-- run: npx @sayyedfaisal06/deph-cli scan
+- run: npx @deph/cli scan
   env: { GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} }
-- run: npx @sayyedfaisal06/deph-cli check
+- run: npx @deph/cli check
 ```
 
 `deph check` needs no network, so it also works as a fast required check against the committed file with no scan step at all.

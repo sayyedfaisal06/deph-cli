@@ -116,12 +116,12 @@ truth. `sync-python.js` refuses to run if `npm/package.json` and
 `src/deph/__init__.py` disagree about the version, so bump both together.
 
 PyPI publishes this as **`deph-cli`**; npm publishes it as
-**`@sayyedfaisal06/deph-cli`**, because `deph` was taken on both registries and
+**`@deph/cli`**, because `deph` was taken on both registries and
 npm additionally rejects the unscoped `deph-cli` as too similar to an existing
 `del-cli`. That similarity check only runs server-side at publish time, so a
 dry run won't catch it. The command, the import name and
 the `.deph` extension are all still `deph`; only the distribution name differs.
-npm runs a package's sole `bin` regardless of its name, so `npx @sayyedfaisal06/deph-cli` works
+npm runs a package's sole `bin` regardless of its name, so `npx @deph/cli` works
 and lands on `deph`.
 
 The wrapper's job is to pass the exit code through untouched, since that's the

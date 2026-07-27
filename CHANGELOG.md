@@ -39,7 +39,7 @@ Notable changes, newest first. Versions follow SemVer.
   `patch` rather than `prerelease`.
 
 ### Added
-- An npm package (`npx @sayyedfaisal06/deph-cli`) that vendors the Python
+- An npm package (`npx @deph/cli`) that vendors the Python
   source and runs it with the system interpreter, so a Node pipeline needs no
   Python setup step. Same tool, same version, exit codes passed through
   untouched. Requires Python 3.9+ on PATH; `DEPH_PYTHON` pins a specific
@@ -76,7 +76,7 @@ Notable changes, newest first. Versions follow SemVer.
 
 ## [0.1.0] - 2026-07-27
 
-First release. `deph-cli` on PyPI, `@sayyedfaisal06/deph-cli` on npm — `deph`
+First release. `deph-cli` on PyPI, `@deph/cli` on npm — `deph`
 was taken on both registries, and npm additionally rejects the unscoped
 `deph-cli` as too similar to an existing `del-cli`. The command, the import
 name and the `.deph` file extension are all still `deph`.
